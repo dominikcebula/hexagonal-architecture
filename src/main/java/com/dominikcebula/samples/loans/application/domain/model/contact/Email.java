@@ -16,7 +16,7 @@ public class Email {
     private final String value;
 
     public Email(String value) {
-        if (StringUtils.isEmpty(value))
+        if (StringUtils.isBlank(value))
             throw new IllegalArgumentException("Email cannot be empty.");
         if (!EMAIL_PATTERN.matcher(value).matches())
             throw new IllegalArgumentException("Email value is not a valid email.");

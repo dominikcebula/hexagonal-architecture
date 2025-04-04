@@ -16,7 +16,7 @@ public class PhoneNumber {
     private final String value;
 
     public PhoneNumber(String value) {
-        if (StringUtils.isEmpty(value))
+        if (StringUtils.isBlank(value))
             throw new IllegalArgumentException("Phone number cannot be empty.");
         if (!PHONE_NUMBER_PATTERN.matcher(value).matches())
             throw new IllegalArgumentException("Phone number value is not a valid website.");

@@ -1,4 +1,4 @@
-package com.dominikcebula.samples.loans.application.domain.model.person;
+package com.dominikcebula.samples.loans.application.domain.model.employer;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,12 +8,12 @@ import org.apache.commons.lang3.StringUtils;
 @Getter
 @EqualsAndHashCode
 @ToString
-public class LastName {
+public class Industry {
     private final String value;
 
-    public LastName(String value) {
+    public Industry(String value) {
         if (StringUtils.isBlank(value))
-            throw new IllegalArgumentException("Last Name cannot be empty.");
+            throw new IllegalArgumentException("Industry name cannot be empty.");
         this.value = value;
     }
 }

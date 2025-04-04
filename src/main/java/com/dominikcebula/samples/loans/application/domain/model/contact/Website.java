@@ -17,7 +17,7 @@ public class Website {
     private final String value;
 
     public Website(String value) {
-        if (StringUtils.isEmpty(value))
+        if (StringUtils.isBlank(value))
             throw new IllegalArgumentException("Website value cannot be empty.");
         if (!WEBSITE_PATTERN.matcher(value).matches())
             throw new IllegalArgumentException("Website value is not a valid website.");

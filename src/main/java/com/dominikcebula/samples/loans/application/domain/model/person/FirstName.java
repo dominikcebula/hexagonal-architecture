@@ -12,7 +12,7 @@ public class FirstName {
     private final String value;
 
     public FirstName(String value) {
-        if (StringUtils.isEmpty(value))
+        if (StringUtils.isBlank(value))
             throw new IllegalArgumentException("First Name cannot be empty.");
         this.value = value;
     }
