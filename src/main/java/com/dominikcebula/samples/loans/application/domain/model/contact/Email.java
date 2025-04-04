@@ -1,10 +1,9 @@
 package com.dominikcebula.samples.loans.application.domain.model.contact;
 
-import com.dominikcebula.samples.loans.application.domain.model.support.DomainValidationException;
+import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
 
@@ -17,10 +16,8 @@ public class Email {
     private final String value;
 
     public Email(String value) {
-        if (StringUtils.isBlank(value))
-            throw new DomainValidationException("Email cannot be empty.");
-        if (!EMAIL_PATTERN.matcher(value).matches())
-            throw new DomainValidationException("Email value is not a valid email.");
+        Validation.requireNonBlank(value, "Email cannot be empty.");
+        Validation.requireValueMatchingPattern(value, EMAIL_PATTERN, "Email value is not a valid email.");
         this.value = value;
     }
 }

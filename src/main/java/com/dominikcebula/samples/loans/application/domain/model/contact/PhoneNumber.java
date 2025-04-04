@@ -1,10 +1,9 @@
 package com.dominikcebula.samples.loans.application.domain.model.contact;
 
-import com.dominikcebula.samples.loans.application.domain.model.support.DomainValidationException;
+import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
 
@@ -17,10 +16,8 @@ public class PhoneNumber {
     private final String value;
 
     public PhoneNumber(String value) {
-        if (StringUtils.isBlank(value))
-            throw new DomainValidationException("Phone number cannot be empty.");
-        if (!PHONE_NUMBER_PATTERN.matcher(value).matches())
-            throw new DomainValidationException("Phone number value is not a valid website.");
+        Validation.requireNonBlank(value, "Phone number cannot be empty.");
+        Validation.requireValueMatchingPattern(value, PHONE_NUMBER_PATTERN, "Phone number value is not a valid phone number.");
         this.value = value;
     }
 }

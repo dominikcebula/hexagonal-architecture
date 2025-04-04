@@ -1,6 +1,6 @@
 package com.dominikcebula.samples.loans.application.domain.model.identifier;
 
-import com.dominikcebula.samples.loans.application.domain.model.support.DomainValidationException;
+import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -12,8 +12,7 @@ public class Identifier {
     private Integer value;
 
     public Identifier(int value) {
-        if (value < 0)
-            throw new DomainValidationException("Identifier value cannot be negative.");
+        Validation.requireValueMatchingCondition(value > 0, "Employer name cannot be negative.");
         this.value = value;
     }
 
