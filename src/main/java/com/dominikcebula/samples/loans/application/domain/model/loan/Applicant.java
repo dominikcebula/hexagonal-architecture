@@ -2,6 +2,7 @@ package com.dominikcebula.samples.loans.application.domain.model.loan;
 
 import com.dominikcebula.samples.loans.application.domain.model.contact.Email;
 import com.dominikcebula.samples.loans.application.domain.model.contact.PhoneNumber;
+import com.dominikcebula.samples.loans.application.domain.model.identifier.Identifier;
 import com.dominikcebula.samples.loans.application.domain.model.person.BirthDate;
 import com.dominikcebula.samples.loans.application.domain.model.person.FirstName;
 import com.dominikcebula.samples.loans.application.domain.model.person.LastName;
@@ -15,6 +16,7 @@ import java.util.Objects;
 @EqualsAndHashCode
 @ToString
 public class Applicant {
+    private final Identifier identifier = Identifier.empty();
     private final FirstName firstName;
     private final LastName lastName;
     private final BirthDate birthDate;
