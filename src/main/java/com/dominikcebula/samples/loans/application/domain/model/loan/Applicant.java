@@ -19,19 +19,22 @@ public class Applicant {
     private final FirstName firstName;
     private final LastName lastName;
     private final BirthDate birthDate;
+    private final CreditScore creditScore;
     private final Email email;
     private final PhoneNumber phoneNumber;
 
-    public Applicant(FirstName firstName, LastName lastName, BirthDate birthDate, Email email, PhoneNumber phoneNumber) {
+    public Applicant(FirstName firstName, LastName lastName, BirthDate birthDate, CreditScore creditScore, Email email, PhoneNumber phoneNumber) {
         Validation.requireNonNull(firstName, "First Name must not be null.");
         Validation.requireNonNull(lastName, "Last Name must not be null.");
         Validation.requireNonNull(birthDate, "Birth date must not be null.");
+        Validation.requireNonNull(creditScore, "Credit score must not be null.");
         Validation.requireNonNull(email, "Email must not be null.");
         Validation.requireNonNull(phoneNumber, "Phone number must not be null.");
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.creditScore = creditScore;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
