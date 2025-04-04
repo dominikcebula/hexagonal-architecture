@@ -13,17 +13,19 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class Employer {
-    private Identifier identifier;
-    private EmployerName name;
-    private Industry industry;
-    private Email email;
-    private PhoneNumber phoneNumber;
-    private Website website;
+    private final Identifier identifier;
+    private final EmployerName name;
+    private final Industry industry;
+    private final NumberOfEmployees numberOfEmployees;
+    private final Email email;
+    private final PhoneNumber phoneNumber;
+    private final Website website;
 
-    public Employer(Identifier identifier, EmployerName name, Industry industry, Email email, PhoneNumber phoneNumber, Website website) {
+    public Employer(Identifier identifier, EmployerName name, Industry industry, NumberOfEmployees numberOfEmployees, Email email, PhoneNumber phoneNumber, Website website) {
         Validation.requireNonNull(identifier, "Identifier cannot be null.");
         Validation.requireNonNull(name, "Name cannot be null.");
         Validation.requireNonNull(industry, "Industry cannot be null.");
+        Validation.requireNonNull(numberOfEmployees, "Number of employees cannot be null.");
         Validation.requireNonNull(email, "Email cannot be null.");
         Validation.requireNonNull(phoneNumber, "PhoneNumber cannot be null.");
         Validation.requireNonNull(website, "Website cannot be null.");
@@ -31,6 +33,7 @@ public class Employer {
         this.identifier = identifier;
         this.name = name;
         this.industry = industry;
+        this.numberOfEmployees = numberOfEmployees;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.website = website;
