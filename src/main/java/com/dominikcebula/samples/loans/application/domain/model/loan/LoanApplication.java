@@ -2,9 +2,15 @@ package com.dominikcebula.samples.loans.application.domain.model.loan;
 
 import com.dominikcebula.samples.loans.application.domain.model.identifier.Identifier;
 import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanStatus.APPROVED;
 
+@Getter
+@EqualsAndHashCode
+@ToString
 public class LoanApplication {
     private final Identifier identifier;
     private final Applicant applicant;

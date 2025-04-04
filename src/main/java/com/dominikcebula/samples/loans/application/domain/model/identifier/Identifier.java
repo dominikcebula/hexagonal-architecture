@@ -2,10 +2,12 @@ package com.dominikcebula.samples.loans.application.domain.model.identifier;
 
 import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 import java.util.Optional;
 
+@Getter
 @EqualsAndHashCode
 @ToString
 public class Identifier {
