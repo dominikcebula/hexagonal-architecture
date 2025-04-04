@@ -14,10 +14,10 @@ public class Age {
 
     private final int value;
 
-    public Age(int value) {
+    public Age(long value) {
         Validation.requireValueMatchingCondition(value > MIN_AGE, "Age cannot be negative.");
         Validation.requireValueMatchingCondition(value < MAX_AGE, "Age cannot be greater than %d.".formatted(MAX_AGE));
 
-        this.value = value;
+        this.value = (int) value;
     }
 }

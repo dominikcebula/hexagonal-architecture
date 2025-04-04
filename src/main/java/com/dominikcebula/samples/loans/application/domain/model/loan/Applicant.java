@@ -3,6 +3,7 @@ package com.dominikcebula.samples.loans.application.domain.model.loan;
 import com.dominikcebula.samples.loans.application.domain.model.contact.Email;
 import com.dominikcebula.samples.loans.application.domain.model.contact.PhoneNumber;
 import com.dominikcebula.samples.loans.application.domain.model.identifier.Identifier;
+import com.dominikcebula.samples.loans.application.domain.model.person.Age;
 import com.dominikcebula.samples.loans.application.domain.model.person.BirthDate;
 import com.dominikcebula.samples.loans.application.domain.model.person.FirstName;
 import com.dominikcebula.samples.loans.application.domain.model.person.LastName;
@@ -10,6 +11,10 @@ import com.dominikcebula.samples.loans.application.domain.model.support.validati
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+
+import java.time.LocalDate;
+
+import static java.time.temporal.ChronoUnit.YEARS;
 
 @Getter
 @EqualsAndHashCode
@@ -37,5 +42,9 @@ public class Applicant {
         this.creditScore = creditScore;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Age getAge() {
+        return new Age(YEARS.between(birthDate.getValue(), LocalDate.now()));
     }
 }
