@@ -1,5 +1,6 @@
 package com.dominikcebula.samples.loans.application.domain.model.person;
 
+import com.dominikcebula.samples.loans.application.domain.model.support.DomainValidationException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -13,7 +14,7 @@ public class LastName {
 
     public LastName(String value) {
         if (StringUtils.isBlank(value))
-            throw new IllegalArgumentException("Last Name cannot be empty.");
+            throw new DomainValidationException("Last Name cannot be empty.");
         this.value = value;
     }
 }

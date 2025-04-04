@@ -1,5 +1,6 @@
 package com.dominikcebula.samples.loans.application.domain.model.person;
 
+import com.dominikcebula.samples.loans.application.domain.model.support.DomainValidationException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -16,7 +17,7 @@ public class BirthDate {
     public BirthDate(LocalDate value) {
         Objects.requireNonNull(value, "Birth Date must not be null.");
         if (value.isBefore(LocalDate.now().minusYears(120)))
-            throw new IllegalArgumentException("Birth Date must be within a reasonable period.");
+            throw new DomainValidationException("Birth Date must be within a reasonable period.");
 
         this.value = value;
     }

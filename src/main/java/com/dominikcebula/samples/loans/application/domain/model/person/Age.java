@@ -1,5 +1,6 @@
 package com.dominikcebula.samples.loans.application.domain.model.person;
 
+import com.dominikcebula.samples.loans.application.domain.model.support.DomainValidationException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -15,9 +16,9 @@ public class Age {
 
     public Age(int value) {
         if (value < MIN_AGE)
-            throw new IllegalArgumentException("Age cannot be negative.");
+            throw new DomainValidationException("Age cannot be negative.");
         if (value > MAX_AGE)
-            throw new IllegalArgumentException("Age cannot be greater than 120.");
+            throw new DomainValidationException("Age cannot be greater than 120.");
 
         this.value = value;
     }

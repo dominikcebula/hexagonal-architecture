@@ -1,6 +1,7 @@
 package com.dominikcebula.samples.loans.application.domain.model.contact;
 
 
+import com.dominikcebula.samples.loans.application.domain.model.support.DomainValidationException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,9 +19,9 @@ public class Website {
 
     public Website(String value) {
         if (StringUtils.isBlank(value))
-            throw new IllegalArgumentException("Website value cannot be empty.");
+            throw new DomainValidationException("Website value cannot be empty.");
         if (!WEBSITE_PATTERN.matcher(value).matches())
-            throw new IllegalArgumentException("Website value is not a valid website.");
+            throw new DomainValidationException("Website value is not a valid website.");
         this.value = value;
     }
 }
