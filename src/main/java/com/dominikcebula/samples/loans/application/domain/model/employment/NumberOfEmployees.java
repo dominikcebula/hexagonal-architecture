@@ -1,4 +1,4 @@
-package com.dominikcebula.samples.loans.application.domain.model.employer;
+package com.dominikcebula.samples.loans.application.domain.model.employment;
 
 import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
 import lombok.EqualsAndHashCode;

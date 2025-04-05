@@ -20,4 +20,8 @@ public class Age {
 
         this.value = (int) value;
     }
+
+    public boolean isAdult() {
+        return value >= 18;
+    }
 }
