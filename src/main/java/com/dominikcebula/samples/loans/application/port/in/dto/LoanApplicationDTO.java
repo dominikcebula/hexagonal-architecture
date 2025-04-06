@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class LoanApplicationDTO {
     private final int id;
-    private final ApplicantRegistrationDTO applicant;
+    private final ApplicantDTO applicant;
     private final MoneyDTO amount;
     private final int termsInMonths;
 }
