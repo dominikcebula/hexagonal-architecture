@@ -27,7 +27,7 @@ public interface ApplicantMapper {
     @Mapping(source = "phoneNumber.value", target = "phoneNumber")
     ApplicantDTO applicantToApplicantDTO(Applicant applicant);
 
-    Applicant applicantRegistrationDTOToApplicant(ApplicantRegistrationDTO applicantDTO);
+    Applicant applicantRegistrationDTOToApplicant(ApplicantRegistrationDTO applicantRegistrationDTO);
 
     @RequiredArgsConstructor
     class ApplicantFactory {
