@@ -23,6 +23,10 @@ public class Employment {
     private final PhoneNumber phoneNumber;
     private final Website website;
 
+    public Employment(EmployerName name, Industry industry, Money yearlyIncome, NumberOfEmployees numberOfEmployees, Email email, PhoneNumber phoneNumber, Website website) {
+        this(Identifier.empty(), name, industry, yearlyIncome, numberOfEmployees, email, phoneNumber, website);
+    }
+
     public Employment(Identifier identifier, EmployerName name, Industry industry, Money yearlyIncome, NumberOfEmployees numberOfEmployees, Email email, PhoneNumber phoneNumber, Website website) {
         Validation.requireNonNull(identifier, "Identifier cannot be null.");
         Validation.requireNonNull(name, "Name cannot be null.");
