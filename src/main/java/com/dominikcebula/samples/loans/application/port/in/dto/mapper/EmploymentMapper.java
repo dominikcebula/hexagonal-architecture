@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ObjectFactory;
+import org.springframework.stereotype.Component;
 
 import static com.dominikcebula.samples.loans.application.port.in.dto.mapper.EmploymentMapper.EmploymentFactory;
 
@@ -30,6 +31,7 @@ public interface EmploymentMapper {
 
     Employment employmentRegistrationDTOToEmployment(EmploymentRegistrationDTO employmentRegistrationDTO);
 
+    @Component
     @RequiredArgsConstructor
     class EmploymentFactory {
         private final MoneyMapper moneyMapper;

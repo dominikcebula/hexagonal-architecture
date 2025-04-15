@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ObjectFactory;
+import org.springframework.stereotype.Component;
 
 import static com.dominikcebula.samples.loans.application.port.in.dto.mapper.LoanApplicationMapper.LoanApplicationFactory;
 
@@ -21,6 +22,7 @@ public interface LoanApplicationMapper {
 
     LoanApplication loanApplicationRegistrationDTOToLoanApplication(LoanApplicationRegistrationDTO loanApplicationRegistrationDTO);
 
+    @Component
     @RequiredArgsConstructor
     class LoanApplicationFactory {
         private final ApplicantMapper applicantMapper;

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: loan-application-and-approval-service
+    name: loans
   liquibase:
     default-schema: ${app.db.schema}
   jpa:
@@ -10,4 +10,4 @@ spring:
 
 app:
   db:
-    schema: loans-application-and-approval
+    schema: loans
