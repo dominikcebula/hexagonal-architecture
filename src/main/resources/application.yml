@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: loan-application-and-approval-service
+  liquibase:
+    default-schema: ${app.db.schema}
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ${app.db.schema}
+
+app:
+  db:
+    schema: loans-application-and-approval
