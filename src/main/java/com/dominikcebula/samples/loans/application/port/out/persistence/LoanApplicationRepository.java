@@ -1,4 +1,4 @@
-package com.dominikcebula.samples.loans.adapter.out.persistence;
+package com.dominikcebula.samples.loans.application.port.out.persistence;
 
 import com.dominikcebula.samples.loans.application.domain.model.loan.LoanApplication;
 
