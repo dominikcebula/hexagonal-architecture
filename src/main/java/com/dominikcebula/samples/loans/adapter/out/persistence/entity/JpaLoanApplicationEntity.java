@@ -20,7 +20,9 @@ public class JpaLoanApplicationEntity {
     @SequenceGenerator(name = "loan_applications_seq", sequenceName = "loan_applications_seq", allocationSize = 1)
     @GeneratedValue(strategy = SEQUENCE, generator = "loan_applications_seq")
     private Long id;
-    //private ApplicantDTO applicant;
+    @ManyToOne
+    @JoinColumn(name = "applicant_id")
+    private JpaApplicantEntity applicant;
     private BigDecimal amount;
     private String currency;
     private int termsInMonths;
