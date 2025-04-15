@@ -11,7 +11,7 @@ import static com.dominikcebula.samples.loans.application.port.in.ApproveLoanUse
 import static com.dominikcebula.samples.loans.application.port.in.ApproveLoanUseCase.LoanApprovalAnswerStatus.NOT_FOUND;
 
 public interface ApproveLoanUseCase {
-    LoanApprovalAnswer approveLoan(int id);
+    LoanApprovalAnswer approveLoan(Long id);
 
     @Getter
     @EqualsAndHashCode

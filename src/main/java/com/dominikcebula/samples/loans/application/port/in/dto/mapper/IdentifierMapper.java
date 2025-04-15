@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface IdentifierMapper {
-    default int mapIdentifier(Identifier identifier) {
+    default Long mapIdentifier(Identifier identifier) {
         return identifier.getValue()
                 .orElseThrow(() -> new IllegalArgumentException("Identifier not present."));
     }

@@ -13,7 +13,7 @@ public class ApproveLoanService implements ApproveLoanUseCase {
     private final LoanApplicationMapper mapper;
 
     @Override
-    public LoanApprovalAnswer approveLoan(int id) {
+    public LoanApprovalAnswer approveLoan(Long id) {
         return repository.findById(id)
                 .map(loanApplication -> {
                     loanApplication.approve();

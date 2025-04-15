@@ -11,10 +11,11 @@ import java.util.Optional;
 @EqualsAndHashCode
 @ToString
 public class Identifier {
-    private Integer value;
+    private Long value;
 
-    public Identifier(int value) {
-        Validation.requireValueMatchingCondition(value > 0, "Employer name cannot be negative.");
+    public Identifier(Long value) {
+        Validation.requireNonNull(value, "Identifier must not be null");
+        Validation.requireValueMatchingCondition(value > 0, "Identifier cannot be negative.");
         this.value = value;
     }
 
@@ -25,7 +26,7 @@ public class Identifier {
         return new Identifier();
     }
 
-    public Optional<Integer> getValue() {
+    public Optional<Long> getValue() {
         return Optional.ofNullable(value);
     }
 }

@@ -5,7 +5,7 @@ import com.dominikcebula.samples.loans.application.domain.model.loan.LoanApplica
 import java.util.Optional;
 
 public interface LoanApplicationRepository {
-    Optional<LoanApplication> findById(int id);
+    Optional<LoanApplication> findById(Long id);
 
     LoanApplication save(LoanApplication loanApplication);
 }
