@@ -6,6 +6,7 @@ import com.dominikcebula.samples.loans.application.port.out.persistence.LoanAppl
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -13,6 +14,13 @@ import java.util.Optional;
 public class LoanApplicationRepositoryAdapter implements LoanApplicationRepository {
     private final SpringLoanApplicationRepository repository;
     private final JpaLoanApplicationMapper mapper;
+
+    @Override
+    public List<LoanApplication> findAll() {
+        return repository.findAll().stream()
+                .map(mapper::jpaLoanApplicationEntityToLoanApplication)
+                .toList();
+    }
 
     @Override
     public Optional<LoanApplication> findById(Long id) {
