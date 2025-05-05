@@ -1,14 +1,18 @@
 package com.dominikcebula.samples.loans.application.domain.model.loan;
 
 import com.dominikcebula.samples.loans.application.domain.model.identifier.Identifier;
-import com.dominikcebula.samples.loans.application.domain.model.support.validation.DomainValidationException;
 import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
+import com.dominikcebula.samples.loans.application.domain.model.support.validation.ValidationResult;
+import com.dominikcebula.samples.loans.application.domain.model.support.validation.ValidationResults;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.javamoney.moneta.Money;
 
 import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanStatus.APPROVED;
+import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanStatus.REJECTED;
+import static com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation.requireValueMatchingCondition;
 
 @Getter
 @EqualsAndHashCode
@@ -38,43 +42,61 @@ public class LoanApplication {
         this.status = status;
     }
 
-    public void approve() {
-        validateLoanCanBeApproved();
+    public LoanApprovalResult approve() {
+        ValidationResults validationResults = validateLoanCanBeApproved();
 
-        status = APPROVED;
+        if (validationResults.isSuccessful())
+            status = APPROVED;
+        else
+            status = REJECTED;
+
+        return new LoanApprovalResult(status, validationResults);
     }
 
-    private void validateLoanCanBeApproved() {
-        validateIsOfLegalAge();
-        validateHasSufficientCreditScore();
-        validateHasStableEmployment();
-        validateHasSufficientIncome();
+    private ValidationResults validateLoanCanBeApproved() {
+        return ValidationResults.of(
+                validateIsOfLegalAge(),
+                validateHasSufficientCreditScore(),
+                validateHasStableEmployment(),
+                validateHasSufficientIncome());
     }
 
-    private void validateIsOfLegalAge() {
-        if (!applicant.getAge().isAdult())
-            throw new DomainValidationException("Applicant is not of legal age.");
+    private ValidationResult validateIsOfLegalAge() {
+        return ValidationResult.of(
+                () -> requireValueMatchingCondition(applicant.getAge().isAdult(), "Applicant is not of legal age."));
     }
 
-    private void validateHasSufficientCreditScore() {
-        if (applicant.getCreditScore().getValue() < 600)
-            throw new DomainValidationException("Applicant does not has sufficient credit score.");
+    private ValidationResult validateHasSufficientCreditScore() {
+        return ValidationResult.of(
+                () -> requireValueMatchingCondition(applicant.getCreditScore().getValue() > 600, "Applicant does not has sufficient credit score."));
     }
 
-    private void validateHasStableEmployment() {
-        if (!applicant.getEmployment().isStableEmployer())
-            throw new DomainValidationException("Applicant does not have stable employer.");
+    private ValidationResult validateHasStableEmployment() {
+        return ValidationResult.of(
+                () -> requireValueMatchingCondition(applicant.getEmployment().isStableEmployer(),
+                        "Applicant does not have stable employer."));
     }
 
-    private void validateHasSufficientIncome() {
+    private ValidationResult validateHasSufficientIncome() {
         Money monthlyLoanPayment = calculateSimplifiedMonthlyPayment();
         Money loanPaymentsForOneQuarter = monthlyLoanPayment.multiply(3);
 
-        if (applicant.getEmployment().getYearlyIncome().isLessThan(loanPaymentsForOneQuarter))
-            throw new DomainValidationException("Applicant does not have sufficient income for a loan.");
+        return ValidationResult.of(
+                () -> requireValueMatchingCondition(
+                        applicant.getEmployment().getYearlyIncome().isGreaterThan(loanPaymentsForOneQuarter),
+                        "Applicant does not have sufficient income for a loan."));
     }
 
     private Money calculateSimplifiedMonthlyPayment() {
         return amount.getValue().divide(termsInMonths.getValue());
+    }
+
+    @RequiredArgsConstructor
+    @Getter
+    @EqualsAndHashCode
+    @ToString
+    public static class LoanApprovalResult {
+        private final LoanStatus status;
+        private final ValidationResults validationResults;
     }
 }

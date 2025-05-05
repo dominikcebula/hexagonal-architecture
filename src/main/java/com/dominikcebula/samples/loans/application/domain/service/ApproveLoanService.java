@@ -6,6 +6,8 @@ import com.dominikcebula.samples.loans.application.port.out.persistence.LoanAppl
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanApplication.LoanApprovalResult;
+
 @Service
 @RequiredArgsConstructor
 public class ApproveLoanService implements ApproveLoanUseCase {
@@ -16,11 +18,19 @@ public class ApproveLoanService implements ApproveLoanUseCase {
     public LoanApprovalAnswer approveLoan(Long id) {
         return repository.findById(id)
                 .map(loanApplication -> {
-                    loanApplication.approve();
+                    LoanApprovalResult loanApprovalResult = loanApplication.approve();
 
                     loanApplication = repository.save(loanApplication);
 
-                    return LoanApprovalAnswer.approved(mapper.loanApplicationToLoanApplicationDTO(loanApplication));
+                    return switch (loanApprovalResult.getStatus()) {
+                        case APPROVED ->
+                                LoanApprovalAnswer.approved(mapper.loanApplicationToLoanApplicationDTO(loanApplication));
+                        case REJECTED -> LoanApprovalAnswer.rejected(
+                                loanApprovalResult.getValidationResults().getMessages(),
+                                mapper.loanApplicationToLoanApplicationDTO(loanApplication));
+                        default ->
+                                throw new IllegalStateException("Unexpected loan approval result: " + loanApprovalResult.getStatus());
+                    };
                 })
                 .orElse(LoanApprovalAnswer.loanNotFound());
     }
