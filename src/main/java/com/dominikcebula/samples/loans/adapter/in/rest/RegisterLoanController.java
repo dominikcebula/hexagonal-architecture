@@ -6,6 +6,7 @@ import com.dominikcebula.samples.loans.application.port.in.dto.LoanApplicationRe
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class RegisterLoanController {
     private final RegisterLoanUseCase registerLoanUseCase;
 
     @PostMapping
-    public ResponseEntity<LoanApplicationDTO> registerLoanApplication(LoanApplicationRegistrationDTO loanApplicationRegistrationDTO) {
+    public ResponseEntity<LoanApplicationDTO> registerLoanApplication(@RequestBody LoanApplicationRegistrationDTO loanApplicationRegistrationDTO) {
         LoanApplicationDTO loanApplicationDTO = registerLoanUseCase.registerLoanApplication(loanApplicationRegistrationDTO);
 
         return ResponseEntity
