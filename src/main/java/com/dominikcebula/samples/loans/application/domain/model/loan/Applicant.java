@@ -21,7 +21,7 @@ import static java.time.temporal.ChronoUnit.YEARS;
 @EqualsAndHashCode
 @ToString
 public class Applicant {
-    private final Identifier identifier = Identifier.empty();
+    private final Identifier identifier;
     private final FirstName firstName;
     private final LastName lastName;
     private final BirthDate birthDate;
@@ -31,6 +31,11 @@ public class Applicant {
     private final PhoneNumber phoneNumber;
 
     public Applicant(FirstName firstName, LastName lastName, BirthDate birthDate, CreditScore creditScore, Employment employment, Email email, PhoneNumber phoneNumber) {
+        this(Identifier.empty(), firstName, lastName, birthDate, creditScore, employment, email, phoneNumber);
+    }
+
+    public Applicant(Identifier identifier, FirstName firstName, LastName lastName, BirthDate birthDate, CreditScore creditScore, Employment employment, Email email, PhoneNumber phoneNumber) {
+        Validation.requireNonNull(identifier, "Identifier must not be null.");
         Validation.requireNonNull(firstName, "First Name must not be null.");
         Validation.requireNonNull(lastName, "Last Name must not be null.");
         Validation.requireNonNull(birthDate, "Birth date must not be null.");
@@ -39,6 +44,7 @@ public class Applicant {
         Validation.requireNonNull(email, "Email must not be null.");
         Validation.requireNonNull(phoneNumber, "Phone number must not be null.");
 
+        this.identifier = identifier;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;

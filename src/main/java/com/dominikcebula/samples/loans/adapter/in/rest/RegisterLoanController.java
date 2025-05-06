@@ -25,7 +25,7 @@ public class RegisterLoanController {
         LoanApplicationDTO loanApplicationDTO = registerLoanUseCase.registerLoanApplication(loanApplicationRegistrationDTO);
 
         return ResponseEntity
-                .created(API_BASE_URI.resolve(valueOf(loanApplicationDTO.getId())))
+                .created(API_BASE_URI.resolve(valueOf(loanApplicationDTO.id())))
                 .body(loanApplicationDTO);
     }
 }

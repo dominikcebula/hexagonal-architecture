@@ -1,13 +1,3 @@
-CREATE SEQUENCE loan_applications_seq START WITH 1 INCREMENT BY 1;
-CREATE TABLE loan_applications
-(
-    id              BIGINT PRIMARY KEY DEFAULT nextval('loan_applications_seq'),
-    amount          NUMERIC,
-    currency        VARCHAR(3),
-    terms_in_months INTEGER,
-    status          VARCHAR(10)
-);
-
 CREATE SEQUENCE employment_info_seq START WITH 1 INCREMENT BY 1;
 CREATE TABLE employment_info
 (
@@ -34,4 +24,16 @@ CREATE TABLE applicants
     email              VARCHAR(100),
     phone_number       VARCHAR(50),
     CONSTRAINT fk_employment FOREIGN KEY (employment_info_id) REFERENCES employment_info (id)
+);
+
+CREATE SEQUENCE loan_applications_seq START WITH 1 INCREMENT BY 1;
+CREATE TABLE loan_applications
+(
+    id              BIGINT PRIMARY KEY DEFAULT nextval('loan_applications_seq'),
+    applicant_id    BIGINT,
+    amount          NUMERIC,
+    currency        VARCHAR(3),
+    terms_in_months INTEGER,
+    status          VARCHAR(10),
+    CONSTRAINT fk_applicant FOREIGN KEY (applicant_id) REFERENCES applicants (id)
 );

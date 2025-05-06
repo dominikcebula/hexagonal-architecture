@@ -7,6 +7,6 @@ import org.mapstruct.Mapper;
 public interface IdentifierMapper {
     default Long mapIdentifier(Identifier identifier) {
         return identifier.getValue()
-                .orElseThrow(() -> new IllegalArgumentException("Identifier not present."));
+                .orElse(null);
     }
 }

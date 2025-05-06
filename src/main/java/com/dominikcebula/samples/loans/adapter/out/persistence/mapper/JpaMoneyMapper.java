@@ -10,4 +10,8 @@ public interface JpaMoneyMapper {
     default Money mapJpaMoneyToMoney(BigDecimal amount, String currency) {
         return Money.of(amount, currency);
     }
+
+    default BigDecimal mapMoneyToJpaMoney(Money money) {
+        return new BigDecimal(money.getNumber().toString());
+    }
 }
