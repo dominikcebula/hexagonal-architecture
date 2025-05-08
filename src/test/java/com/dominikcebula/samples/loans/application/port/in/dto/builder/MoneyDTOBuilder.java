@@ -13,6 +13,11 @@ public class MoneyDTOBuilder {
         return new MoneyDTOBuilder();
     }
 
+    public MoneyDTOBuilder withAmount(int amount) {
+        this.amount = BigDecimal.valueOf(amount);
+        return this;
+    }
+
     public MoneyDTOBuilder withAmount(BigDecimal amount) {
         this.amount = amount;
         return this;
