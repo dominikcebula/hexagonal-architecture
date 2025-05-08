@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;
@@ -28,6 +29,7 @@ class ListLoansControllerIntegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
+    @DirtiesContext
     void shouldListLoanApplications() {
         // given
         List<LoanApplicationDTO> registeredLoanApplications = loanRestTestUtils.registerLoanApplications();
