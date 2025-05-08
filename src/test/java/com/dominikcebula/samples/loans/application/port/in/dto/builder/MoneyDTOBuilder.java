@@ -1,4 +1,6 @@
-package com.dominikcebula.samples.loans.application.port.in.dto;
+package com.dominikcebula.samples.loans.application.port.in.dto.builder;
+
+import com.dominikcebula.samples.loans.application.port.in.dto.MoneyDTO;
 
 import java.math.BigDecimal;
 

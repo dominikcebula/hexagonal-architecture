@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.dominikcebula.samples.loans.adapter.in.rest.ApiConstants.API_BASE;
-import static com.dominikcebula.samples.loans.adapter.in.rest.ApiConstants.API_BASE_URI;
-import static java.lang.String.valueOf;
+import static com.dominikcebula.samples.loans.adapter.in.rest.common.http.uri.URIUtils.pathTo;
 
 @RestController
 @RequestMapping(API_BASE)
@@ -25,7 +24,7 @@ public class RegisterLoanController {
         LoanApplicationDTO loanApplicationDTO = registerLoanUseCase.registerLoanApplication(loanApplicationRegistrationDTO);
 
         return ResponseEntity
-                .created(API_BASE_URI.resolve(valueOf(loanApplicationDTO.id())))
+                .created(pathTo(API_BASE, loanApplicationDTO.id()))
                 .body(loanApplicationDTO);
     }
 }

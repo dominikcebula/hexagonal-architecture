@@ -1,4 +1,7 @@
-package com.dominikcebula.samples.loans.application.port.in.dto;
+package com.dominikcebula.samples.loans.application.port.in.dto.builder;
+
+import com.dominikcebula.samples.loans.application.port.in.dto.ApplicantRegistrationDTO;
+import com.dominikcebula.samples.loans.application.port.in.dto.EmploymentRegistrationDTO;
 
 import java.time.LocalDate;
 
