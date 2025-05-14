@@ -18,6 +18,7 @@ import static com.dominikcebula.samples.loans.adapter.in.rest.ApiConstants.API_B
 import static com.dominikcebula.samples.loans.adapter.in.rest.common.http.uri.URIUtils.pathTo;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -44,5 +45,15 @@ class RetrieveLoanControllerIntegrationTest {
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody().id()).isPositive();
         assertThat(response.getBody()).isEqualTo(registeredLoan);
+    }
+
+    @Test
+    void shouldNotRetrieveNonExistingLoanApplication() {
+        // when
+        ResponseEntity<LoanApplicationDTO> response = restTemplate.getForEntity(pathTo(API_BASE, Integer.MAX_VALUE), LoanApplicationDTO.class);
+
+        // then
+        assertThat(response.getStatusCode()).isEqualTo(NOT_FOUND);
+        assertThat(response.getBody()).isNull();
     }
 }
