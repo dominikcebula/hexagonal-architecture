@@ -24,6 +24,14 @@ public class LoanRestTestUtils {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
+    public LoanApplicationDTO registerLoanApplication() {
+        ResponseEntity<LoanApplicationDTO> response = testRestTemplate.postForEntity(API_BASE, newLoanApplication().build(), LoanApplicationDTO.class);
+
+        assertThat(response).extracting(ResponseEntity::getStatusCode).isEqualTo(HttpStatus.CREATED);
+
+        return response.getBody();
+    }
+
     public List<LoanApplicationDTO> registerLoanApplications() {
         List<LoanApplicationRegistrationDTO> loanApplicationRegistrations = createLoanApplicationRegistrations();
 

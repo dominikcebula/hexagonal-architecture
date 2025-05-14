@@ -10,7 +10,7 @@ public class EmploymentRegistrationDTOBuilder {
     private String name = "Acme Corp";
     private String industry = "Technology";
     private MoneyDTO yearlyIncome = new MoneyDTOBuilder().withAmount(BigDecimal.valueOf(85000)).build();
-    private int numberOfEmployees = 500;
+    private int numberOfEmployees = 5000;
     private String email = "hr@acmecorp.com";
     private String phoneNumber = "5551234567";
     private String website = "https://www.acmecorp.com";
