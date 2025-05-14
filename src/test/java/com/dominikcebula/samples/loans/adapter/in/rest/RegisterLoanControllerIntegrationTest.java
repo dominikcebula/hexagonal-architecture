@@ -40,6 +40,7 @@ class RegisterLoanControllerIntegrationTest {
 
         // then
         assertThat(response.getStatusCode()).isEqualTo(CREATED);
+        assertThat(response.getBody()).isNotNull();
         assertThat(response.getHeaders())
                 .containsEntry(LOCATION, List.of(API_BASE + "/" + response.getBody().id()));
         LoanApplicationDTOAssertions.assertEquals(response.getBody(), applicationRegistrationDTO);

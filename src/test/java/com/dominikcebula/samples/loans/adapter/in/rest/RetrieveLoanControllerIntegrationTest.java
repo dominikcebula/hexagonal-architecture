@@ -40,6 +40,7 @@ class RetrieveLoanControllerIntegrationTest {
         ResponseEntity<LoanApplicationDTO> response = restTemplate.getForEntity(pathTo(API_BASE, registeredLoan.id()), LoanApplicationDTO.class);
 
         // then
+        assertThat(response.getBody()).isNotNull();
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody().id()).isPositive();
         assertThat(response.getBody()).isEqualTo(registeredLoan);
