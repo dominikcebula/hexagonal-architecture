@@ -1,30 +1,24 @@
 package com.dominikcebula.samples.loans.adapter.in.rest;
 
 import com.dominikcebula.samples.loans.adapter.in.rest.testutils.LoanRestTestUtils;
-import com.dominikcebula.samples.loans.adapter.out.persistence.PostgreSQLContainerConfiguration;
 import com.dominikcebula.samples.loans.application.domain.model.loan.LoanStatus;
 import com.dominikcebula.samples.loans.application.port.in.ApproveLoanUseCase.LoanApprovalAnswer;
 import com.dominikcebula.samples.loans.application.port.in.ApproveLoanUseCase.LoanApprovalAnswerStatus;
 import com.dominikcebula.samples.loans.application.port.in.dto.LoanApplicationDTO;
+import com.dominikcebula.samples.loans.test.support.ApiTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static com.dominikcebula.samples.loans.adapter.in.rest.ApiConstants.API_BASE;
 import static com.dominikcebula.samples.loans.adapter.in.rest.common.http.uri.URIUtils.pathTo;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
-@SpringBootTest(webEnvironment = RANDOM_PORT)
-@Testcontainers
-@Import({PostgreSQLContainerConfiguration.class})
+@ApiTest
 class ApproveLoanControllerIntegrationTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
