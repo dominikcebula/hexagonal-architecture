@@ -42,4 +42,14 @@ class ListLoansControllerIntegrationTest {
         assertThat(response.getBody())
                 .containsOnlyElementsOf(registeredLoanApplications);
     }
+
+    @Test
+    void shouldListEmptyLoanApplications() {
+        // when
+        ResponseEntity<LoanApplicationDTO[]> response = restTemplate.getForEntity(API_BASE, LoanApplicationDTO[].class);
+
+        // then
+        assertThat(response.getStatusCode()).isEqualTo(OK);
+        assertThat(response.getBody()).isEmpty();
+    }
 }
