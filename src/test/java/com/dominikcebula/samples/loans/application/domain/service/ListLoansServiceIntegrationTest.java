@@ -1,5 +1,6 @@
 package com.dominikcebula.samples.loans.application.domain.service;
 
+import com.dominikcebula.samples.loans.application.port.in.ListLoansUseCase;
 import com.dominikcebula.samples.loans.application.port.in.LoanTestUtils;
 import com.dominikcebula.samples.loans.application.port.in.dto.LoanApplicationDTO;
 import com.dominikcebula.samples.loans.test.support.UseCaseTest;
@@ -16,7 +17,7 @@ class ListLoansServiceIntegrationTest {
     @Autowired
     private LoanTestUtils loanTestUtils;
     @Autowired
-    private ListLoansService listLoansService;
+    private ListLoansUseCase listLoansUseCase;
 
     @Test
     @DirtiesContext
@@ -25,7 +26,7 @@ class ListLoansServiceIntegrationTest {
         List<LoanApplicationDTO> registeredLoanApplications = loanTestUtils.registerLoanApplications();
 
         // when
-        List<LoanApplicationDTO> retrievedLoanApplications = listLoansService.retrieveLoanApplications();
+        List<LoanApplicationDTO> retrievedLoanApplications = listLoansUseCase.retrieveLoanApplications();
 
         // then
         assertThat(retrievedLoanApplications)
@@ -35,7 +36,7 @@ class ListLoansServiceIntegrationTest {
     @Test
     void shouldReturnEmptyListWhenNoLoanApplicationsRegistered() {
         // when
-        List<LoanApplicationDTO> retrievedLoanApplications = listLoansService.retrieveLoanApplications();
+        List<LoanApplicationDTO> retrievedLoanApplications = listLoansUseCase.retrieveLoanApplications();
 
         // then
         assertThat(retrievedLoanApplications).isEmpty();
