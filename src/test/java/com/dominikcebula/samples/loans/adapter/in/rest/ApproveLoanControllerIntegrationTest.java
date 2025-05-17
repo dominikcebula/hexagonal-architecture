@@ -30,7 +30,7 @@ class ApproveLoanControllerIntegrationTest {
     void shouldApproveLoan() {
         // given
         LoanApplicationDTO loanApplicationDTO = loanRestTestUtils.registerLoanApplication();
-        int applicationId = loanApplicationDTO.id();
+        long applicationId = loanApplicationDTO.id();
 
         // when
         ResponseEntity<LoanApprovalAnswer> response = testRestTemplate.postForEntity(pathTo(API_BASE, applicationId + "/approve"), null, LoanApprovalAnswer.class);

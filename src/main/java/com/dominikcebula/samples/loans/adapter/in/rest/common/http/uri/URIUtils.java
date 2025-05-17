@@ -6,8 +6,8 @@ public class URIUtils {
     private URIUtils() {
     }
 
-    public static URI pathTo(String base, int path) {
-        return pathTo(base, String.valueOf(path));
+    public static URI pathTo(String base, long id) {
+        return pathTo(base, String.valueOf(id));
     }
 
     public static URI pathTo(String base, String path) {

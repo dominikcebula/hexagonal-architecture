@@ -7,6 +7,7 @@ import com.dominikcebula.samples.loans.application.domain.model.employment.Emplo
 import com.dominikcebula.samples.loans.application.domain.model.employment.Employment;
 import com.dominikcebula.samples.loans.application.domain.model.employment.Industry;
 import com.dominikcebula.samples.loans.application.domain.model.employment.NumberOfEmployees;
+import com.dominikcebula.samples.loans.application.domain.model.identifier.Identifier;
 import com.dominikcebula.samples.loans.application.port.in.dto.EmploymentDTO;
 import com.dominikcebula.samples.loans.application.port.in.dto.EmploymentRegistrationDTO;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +30,28 @@ public interface EmploymentMapper {
     @Mapping(source = "website.value", target = "website")
     EmploymentDTO employmentToEmploymentDTO(Employment employment);
 
+    Employment employmentDTOToEmployment(EmploymentDTO employmentRegistrationDTO);
+
     Employment employmentRegistrationDTOToEmployment(EmploymentRegistrationDTO employmentRegistrationDTO);
 
     @Component
     @RequiredArgsConstructor
     class EmploymentFactory {
         private final MoneyMapper moneyMapper;
+
+        @ObjectFactory
+        Employment createEmployment(EmploymentDTO employmentDTO) {
+            return new Employment(
+                    new Identifier(employmentDTO.id()),
+                    new EmployerName(employmentDTO.name()),
+                    new Industry(employmentDTO.industry()),
+                    moneyMapper.mapMoneyDTOToMoney(employmentDTO.yearlyIncome()),
+                    new NumberOfEmployees(employmentDTO.numberOfEmployees()),
+                    new Email(employmentDTO.email()),
+                    new PhoneNumber(employmentDTO.phoneNumber()),
+                    new Website(employmentDTO.website())
+            );
+        }
 
         @ObjectFactory
         Employment createEmployment(EmploymentRegistrationDTO employmentRegistrationDTO) {

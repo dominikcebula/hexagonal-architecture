@@ -2,6 +2,7 @@ package com.dominikcebula.samples.loans.application.port.in.dto.mapper;
 
 import com.dominikcebula.samples.loans.application.domain.model.contact.Email;
 import com.dominikcebula.samples.loans.application.domain.model.contact.PhoneNumber;
+import com.dominikcebula.samples.loans.application.domain.model.identifier.Identifier;
 import com.dominikcebula.samples.loans.application.domain.model.loan.Applicant;
 import com.dominikcebula.samples.loans.application.domain.model.loan.CreditScore;
 import com.dominikcebula.samples.loans.application.domain.model.person.BirthDate;
@@ -28,12 +29,28 @@ public interface ApplicantMapper {
     @Mapping(source = "phoneNumber.value", target = "phoneNumber")
     ApplicantDTO applicantToApplicantDTO(Applicant applicant);
 
+    Applicant applicantDTOToApplicant(ApplicantDTO applicantTO);
+
     Applicant applicantRegistrationDTOToApplicant(ApplicantRegistrationDTO applicantRegistrationDTO);
 
     @Component
     @RequiredArgsConstructor
     class ApplicantFactory {
         private final EmploymentMapper employmentMapper;
+
+        @ObjectFactory
+        Applicant createApplicant(ApplicantDTO applicantDTO) {
+            return new Applicant(
+                    new Identifier(applicantDTO.id()),
+                    new FirstName(applicantDTO.firstName()),
+                    new LastName(applicantDTO.lastName()),
+                    new BirthDate(applicantDTO.birthDate()),
+                    new CreditScore(applicantDTO.creditScore()),
+                    employmentMapper.employmentDTOToEmployment(applicantDTO.employment()),
+                    new Email(applicantDTO.email()),
+                    new PhoneNumber(applicantDTO.phoneNumber())
+            );
+        }
 
         @ObjectFactory
         Applicant createApplicant(ApplicantRegistrationDTO applicantRegistrationDTO) {

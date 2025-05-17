@@ -1,5 +1,6 @@
 package com.dominikcebula.samples.loans.application.port.in.dto.mapper;
 
+import com.dominikcebula.samples.loans.application.domain.model.identifier.Identifier;
 import com.dominikcebula.samples.loans.application.domain.model.loan.LoanAmount;
 import com.dominikcebula.samples.loans.application.domain.model.loan.LoanApplication;
 import com.dominikcebula.samples.loans.application.domain.model.loan.TermsInMonths;
@@ -20,6 +21,8 @@ public interface LoanApplicationMapper {
     @Mapping(source = "termsInMonths.value", target = "termsInMonths")
     LoanApplicationDTO loanApplicationToLoanApplicationDTO(LoanApplication loanApplication);
 
+    LoanApplication loanApplicationDTOToLoanApplication(LoanApplicationDTO loanApplication);
+
     LoanApplication loanApplicationRegistrationDTOToLoanApplication(LoanApplicationRegistrationDTO loanApplicationRegistrationDTO);
 
     @Component
@@ -27,6 +30,17 @@ public interface LoanApplicationMapper {
     class LoanApplicationFactory {
         private final ApplicantMapper applicantMapper;
         private final MoneyMapper moneyMapper;
+
+        @ObjectFactory
+        LoanApplication createLoanApplication(LoanApplicationDTO loanApplicationRegistrationDTO) {
+            return new LoanApplication(
+                    new Identifier(loanApplicationRegistrationDTO.id()),
+                    applicantMapper.applicantDTOToApplicant(loanApplicationRegistrationDTO.applicant()),
+                    new LoanAmount(moneyMapper.mapMoneyDTOToMoney(loanApplicationRegistrationDTO.amount())),
+                    new TermsInMonths(loanApplicationRegistrationDTO.termsInMonths()),
+                    loanApplicationRegistrationDTO.status()
+            );
+        }
 
         @ObjectFactory
         LoanApplication createLoanApplication(LoanApplicationRegistrationDTO loanApplicationRegistrationDTO) {
