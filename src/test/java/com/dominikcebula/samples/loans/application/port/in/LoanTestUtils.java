@@ -28,6 +28,12 @@ public class LoanTestUtils {
         return registerLoanService.registerLoanApplication(loanApplicationRegistrationDTO);
     }
 
+    public List<LoanApplicationDTO> registerLoanApplications() {
+        return createLoanApplicationRegistrations().stream()
+                .map(registerLoanService::registerLoanApplication)
+                .toList();
+    }
+
     public List<LoanApplicationRegistrationDTO> createLoanApplicationRegistrations() {
         return List.of(
                 newLoanApplication()
