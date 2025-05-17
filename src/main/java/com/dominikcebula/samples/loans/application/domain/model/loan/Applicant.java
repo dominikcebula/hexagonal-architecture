@@ -8,12 +8,12 @@ import com.dominikcebula.samples.loans.application.domain.model.person.Age;
 import com.dominikcebula.samples.loans.application.domain.model.person.BirthDate;
 import com.dominikcebula.samples.loans.application.domain.model.person.FirstName;
 import com.dominikcebula.samples.loans.application.domain.model.person.LastName;
+import com.dominikcebula.samples.loans.application.domain.model.support.spring.BeanProvider;
 import com.dominikcebula.samples.loans.application.domain.model.support.validation.Validation;
+import com.dominikcebula.samples.loans.application.port.time.CurrentDateProvider;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-
-import java.time.LocalDate;
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
@@ -29,6 +29,8 @@ public class Applicant {
     private final Employment employment;
     private final Email email;
     private final PhoneNumber phoneNumber;
+
+    private final CurrentDateProvider currentDateProvider = BeanProvider.getBean(CurrentDateProvider.class);
 
     public Applicant(FirstName firstName, LastName lastName, BirthDate birthDate, CreditScore creditScore, Employment employment, Email email, PhoneNumber phoneNumber) {
         this(Identifier.empty(), firstName, lastName, birthDate, creditScore, employment, email, phoneNumber);
@@ -55,6 +57,6 @@ public class Applicant {
     }
 
     public Age getAge() {
-        return new Age(YEARS.between(birthDate.getValue(), LocalDate.now()));
+        return new Age(YEARS.between(birthDate.getValue(), currentDateProvider.now()));
     }
 }

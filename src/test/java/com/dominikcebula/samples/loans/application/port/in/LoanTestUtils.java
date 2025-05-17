@@ -21,7 +21,11 @@ public class LoanTestUtils {
     private final RegisterLoanService registerLoanService;
 
     public LoanApplicationDTO registerLoanApplication() {
-        return registerLoanService.registerLoanApplication(newLoanApplication().build());
+        return registerLoanApplication(newLoanApplication().build());
+    }
+
+    public LoanApplicationDTO registerLoanApplication(LoanApplicationRegistrationDTO loanApplicationRegistrationDTO) {
+        return registerLoanService.registerLoanApplication(loanApplicationRegistrationDTO);
     }
 
     public List<LoanApplicationRegistrationDTO> createLoanApplicationRegistrations() {
