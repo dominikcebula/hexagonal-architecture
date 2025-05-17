@@ -21,7 +21,7 @@ import static com.dominikcebula.samples.loans.application.port.in.dto.builder.Lo
 import static org.assertj.core.api.Assertions.assertThat;
 
 @UseCaseTest
-class ApproveLoanServiceTest {
+class ApproveLoanServiceIntegrationTest {
     @Autowired
     private LoanTestUtils loanTestUtils;
     @Autowired
