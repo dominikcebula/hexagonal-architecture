@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanApplication.LoanApprovalResult;
 import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanStatus.APPROVED;
+import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanStatus.REGISTERED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LoanApplicationTest {
@@ -19,6 +20,24 @@ class LoanApplicationTest {
     @AfterEach
     public void tearDown() {
         MockDateProvider.tearDown();
+    }
+
+    @Test
+    void shouldCreateNewLoanInRegisteredStatus() {
+        // when
+        LoanApplication loanApplication = LoanApplicationBuilder.newLoanApplication().build();
+
+        // then
+        assertThat(loanApplication.getStatus()).isEqualTo(REGISTERED);
+    }
+
+    @Test
+    void shouldCreateNewLoanWithoutIdentifier() {
+        // when
+        LoanApplication loanApplication = LoanApplicationBuilder.newLoanApplication().build();
+
+        // then
+        assertThat(loanApplication.getIdentifier().getValue()).isEmpty();
     }
 
     @Test
