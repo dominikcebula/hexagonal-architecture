@@ -21,8 +21,8 @@ public class TermsInMonths {
     }
 
     public TermsInMonths(long value) {
-        Validation.requireValueMatchingCondition(value > MIN_TERMS_IN_MONTH, "Loan must be given for at least one month.");
-        Validation.requireValueMatchingCondition(value < MAX_TERMS_IN_MONTH, String.format("Loan must be given for a maximum period of %d months.", MAX_TERMS_IN_MONTH));
+        Validation.requireValueMatchingCondition(value >= MIN_TERMS_IN_MONTH, "Loan must be given for at least one month.");
+        Validation.requireValueMatchingCondition(value <= MAX_TERMS_IN_MONTH, String.format("Loan must be given for a maximum period of %d months.", MAX_TERMS_IN_MONTH));
         this.value = (int) value;
     }
 }
