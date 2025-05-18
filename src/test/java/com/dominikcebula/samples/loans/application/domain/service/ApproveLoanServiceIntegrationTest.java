@@ -17,7 +17,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.time.LocalDate;
 
 import static com.dominikcebula.samples.loans.application.port.in.ApproveLoanUseCase.LoanApprovalAnswer;
-import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplication;
+import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplicationRegistration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @UseCaseTest
@@ -53,10 +53,10 @@ class ApproveLoanServiceIntegrationTest {
     void shouldNotApproveLoanForApplicantThatIsNotOfLegalAge() {
         // given
         LoanApplicationDTO loanApplicationDTO = loanTestUtils.registerLoanApplication(
-                newLoanApplication()
+                newLoanApplicationRegistration()
                         .withApplicant(
                                 ApplicantRegistrationDTOBuilder
-                                        .newApplicant()
+                                        .newApplicantRegistration()
                                         .withBirthDate(birthDateForAgeOfFive())
                                         .build()
                         )

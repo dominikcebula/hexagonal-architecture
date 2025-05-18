@@ -15,7 +15,10 @@ public class EmploymentRegistrationDTOBuilder {
     private String phoneNumber = "5551234567";
     private String website = "https://www.acmecorp.com";
 
-    public static EmploymentRegistrationDTOBuilder newEmployment() {
+    private EmploymentRegistrationDTOBuilder() {
+    }
+
+    public static EmploymentRegistrationDTOBuilder newEmploymentRegistration() {
         return new EmploymentRegistrationDTOBuilder();
     }
 

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplication;
+import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplicationRegistration;
 
 @Component
 @RequiredArgsConstructor
@@ -21,7 +21,7 @@ public class LoanTestUtils {
     private final RegisterLoanService registerLoanService;
 
     public LoanApplicationDTO registerLoanApplication() {
-        return registerLoanApplication(newLoanApplication().build());
+        return registerLoanApplication(newLoanApplicationRegistration().build());
     }
 
     public LoanApplicationDTO registerLoanApplication(LoanApplicationRegistrationDTO loanApplicationRegistrationDTO) {
@@ -36,10 +36,10 @@ public class LoanTestUtils {
 
     public List<LoanApplicationRegistrationDTO> createLoanApplicationRegistrations() {
         return List.of(
-                newLoanApplication()
+                newLoanApplicationRegistration()
                         .withApplicant(
                                 ApplicantRegistrationDTOBuilder
-                                        .newApplicant()
+                                        .newApplicantRegistration()
                                         .withEmail("John.Doe@mail.com")
                                         .withFirstName("John")
                                         .withLastName("Doe")
@@ -47,7 +47,7 @@ public class LoanTestUtils {
                                         .withBirthDate(LocalDate.of(1985, Month.FEBRUARY, 11))
                                         .withEmployment(
                                                 EmploymentRegistrationDTOBuilder
-                                                        .newEmployment()
+                                                        .newEmploymentRegistration()
                                                         .withName("TechNova Solutions")
                                                         .withIndustry("Information Technology")
                                                         .withWebsite("https://www.technova.com")
@@ -63,10 +63,10 @@ public class LoanTestUtils {
                                 .build())
                         .withTermsInMonths(10)
                         .build(),
-                newLoanApplication()
+                newLoanApplicationRegistration()
                         .withApplicant(
                                 ApplicantRegistrationDTOBuilder
-                                        .newApplicant()
+                                        .newApplicantRegistration()
                                         .withEmail("Emily.Carter@mail.com")
                                         .withFirstName("Emily")
                                         .withLastName("Carter")
@@ -74,7 +74,7 @@ public class LoanTestUtils {
                                         .withBirthDate(LocalDate.of(1983, Month.APRIL, 15))
                                         .withEmployment(
                                                 EmploymentRegistrationDTOBuilder
-                                                        .newEmployment()
+                                                        .newEmploymentRegistration()
                                                         .withName("GreenField Logistics")
                                                         .withIndustry("Transportation and Logistics")
                                                         .withWebsite("https://www.greenfieldlogistics.com")
@@ -90,10 +90,10 @@ public class LoanTestUtils {
                                 .build())
                         .withTermsInMonths(20)
                         .build(),
-                newLoanApplication()
+                newLoanApplicationRegistration()
                         .withApplicant(
                                 ApplicantRegistrationDTOBuilder
-                                        .newApplicant()
+                                        .newApplicantRegistration()
                                         .withEmail("James.Morgan@example.com")
                                         .withFirstName("James")
                                         .withLastName("Morgan")
@@ -101,7 +101,7 @@ public class LoanTestUtils {
                                         .withBirthDate(LocalDate.of(1990, Month.DECEMBER, 5))
                                         .withEmployment(
                                                 EmploymentRegistrationDTOBuilder
-                                                        .newEmployment()
+                                                        .newEmploymentRegistration()
                                                         .withName("Aurum Financial Group")
                                                         .withIndustry("Financial Services")
                                                         .withWebsite("https://www.aurumfinance.com")

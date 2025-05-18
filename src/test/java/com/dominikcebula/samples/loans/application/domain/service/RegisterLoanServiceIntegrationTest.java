@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 
 import static com.dominikcebula.samples.loans.application.domain.model.loan.LoanStatus.REGISTERED;
-import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplication;
+import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplicationRegistration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @UseCaseTest
@@ -21,7 +21,7 @@ class RegisterLoanServiceIntegrationTest {
     @DirtiesContext
     void shouldRegisterLoanApplication() {
         // given
-        LoanApplicationRegistrationDTO loanApplicationRegistrationDTO = newLoanApplication().build();
+        LoanApplicationRegistrationDTO loanApplicationRegistrationDTO = newLoanApplicationRegistration().build();
 
         // when
         LoanApplicationDTO registeredLoanApplication = registerLoanUseCase.registerLoanApplication(loanApplicationRegistrationDTO);

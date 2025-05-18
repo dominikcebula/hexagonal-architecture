@@ -6,11 +6,14 @@ import com.dominikcebula.samples.loans.application.port.in.dto.MoneyDTO;
 
 public class LoanApplicationRegistrationDTOBuilder {
 
-    private ApplicantRegistrationDTO applicant = new ApplicantRegistrationDTOBuilder().build();
+    private ApplicantRegistrationDTO applicant = ApplicantRegistrationDTOBuilder.newApplicantRegistration().build();
     private MoneyDTO amount = new MoneyDTOBuilder().build();
     private int termsInMonths = 36;
 
-    public static LoanApplicationRegistrationDTOBuilder newLoanApplication() {
+    private LoanApplicationRegistrationDTOBuilder() {
+    }
+
+    public static LoanApplicationRegistrationDTOBuilder newLoanApplicationRegistration() {
         return new LoanApplicationRegistrationDTOBuilder();
     }
 

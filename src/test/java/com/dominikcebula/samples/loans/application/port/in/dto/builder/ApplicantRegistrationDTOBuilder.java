@@ -13,11 +13,14 @@ public class ApplicantRegistrationDTOBuilder {
     private String lastName = "Doe";
     private LocalDate birthDate = LocalDate.of(1993, AUGUST, 15);
     private int creditScore = 700;
-    private EmploymentRegistrationDTO employment = new EmploymentRegistrationDTOBuilder().build();
+    private EmploymentRegistrationDTO employment = EmploymentRegistrationDTOBuilder.newEmploymentRegistration().build();
     private String email = "john.doe@example.com";
     private String phoneNumber = "1234567890";
 
-    public static ApplicantRegistrationDTOBuilder newApplicant() {
+    private ApplicantRegistrationDTOBuilder() {
+    }
+
+    public static ApplicantRegistrationDTOBuilder newApplicantRegistration() {
         return new ApplicantRegistrationDTOBuilder();
     }
 

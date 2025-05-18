@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 import static com.dominikcebula.samples.loans.adapter.in.rest.ApiConstants.API_BASE;
-import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplication;
+import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplicationRegistration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Component
@@ -22,7 +22,7 @@ public class LoanRestTestUtils {
     private final LoanTestUtils loanTestUtils;
 
     public LoanApplicationDTO registerLoanApplication() {
-        ResponseEntity<LoanApplicationDTO> response = testRestTemplate.postForEntity(API_BASE, newLoanApplication().build(), LoanApplicationDTO.class);
+        ResponseEntity<LoanApplicationDTO> response = testRestTemplate.postForEntity(API_BASE, newLoanApplicationRegistration().build(), LoanApplicationDTO.class);
 
         assertThat(response).extracting(ResponseEntity::getStatusCode).isEqualTo(HttpStatus.CREATED);
 

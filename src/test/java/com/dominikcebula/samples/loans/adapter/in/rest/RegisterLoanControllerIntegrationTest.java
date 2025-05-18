@@ -13,7 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.util.List;
 
 import static com.dominikcebula.samples.loans.adapter.in.rest.ApiConstants.API_BASE;
-import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplication;
+import static com.dominikcebula.samples.loans.application.port.in.dto.builder.LoanApplicationRegistrationDTOBuilder.newLoanApplicationRegistration;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpHeaders.LOCATION;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -27,7 +27,7 @@ class RegisterLoanControllerIntegrationTest {
     @DirtiesContext
     void shouldRegisterLoan() {
         // given
-        LoanApplicationRegistrationDTO applicationRegistrationDTO = newLoanApplication().build();
+        LoanApplicationRegistrationDTO applicationRegistrationDTO = newLoanApplicationRegistration().build();
 
         // when
         ResponseEntity<LoanApplicationDTO> response = testRestTemplate.postForEntity(API_BASE, applicationRegistrationDTO, LoanApplicationDTO.class);
