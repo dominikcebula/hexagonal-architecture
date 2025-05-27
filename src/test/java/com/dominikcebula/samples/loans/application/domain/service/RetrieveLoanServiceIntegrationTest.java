@@ -6,6 +6,7 @@ import com.dominikcebula.samples.loans.application.port.in.dto.LoanApplicationDT
 import com.dominikcebula.samples.loans.test.support.UseCaseTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ class RetrieveLoanServiceIntegrationTest {
     private RetrieveLoanUseCase retrieveLoanUseCase;
 
     @Test
+    @DirtiesContext
     void shouldRetrieveRegisteredLoan() {
         // given
         LoanApplicationDTO registeredLoanApplication = loanTestUtils.registerLoanApplication();
