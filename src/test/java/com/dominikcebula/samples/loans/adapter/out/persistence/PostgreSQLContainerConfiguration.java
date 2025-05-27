@@ -9,7 +9,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 public class PostgreSQLContainerConfiguration {
     @Bean
     @ServiceConnection
-    public PostgreSQLContainer<?> redisContainer() {
+    public PostgreSQLContainer<?> postgreSQLContainer() {
         return new PostgreSQLContainer<>("postgres:16-alpine");
     }
 }
