@@ -1,3 +1,5 @@
+[![CI Pipeline](https://github.com/dominikcebula/hexagonal-architecture/actions/workflows/maven.yml/badge.svg)](https://github.com/dominikcebula/hexagonal-architecture/actions/workflows/maven.yml)
+
 # Hexagonal Architecture Sample Code - Loan Application and Approval System
 
 ## Intro
