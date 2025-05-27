@@ -42,6 +42,19 @@ class ApplicantTest {
     }
 
     @Test
+    void shouldCalculateAgeCorrectly() {
+        // given
+        LocalDate birthDate = birthDateForAgeOfFive();
+        Applicant applicant = new Applicant(FIRST_NAME, LAST_NAME, new BirthDate(birthDate), CREDIT_SCORE, EMPLOYMENT, E_MAIL, PHONE_NUMBER);
+
+        // when
+        Age age = applicant.getAge();
+
+        // then
+        assertThat(age.getValue()).isEqualTo(5);
+    }
+
+    @Test
     void shouldCreateApplicantWithValidInputs() {
         // when
         Applicant applicant = new Applicant(FIRST_NAME, LAST_NAME, BRITH_DATE, CREDIT_SCORE, EMPLOYMENT, E_MAIL, PHONE_NUMBER);
@@ -108,19 +121,6 @@ class ApplicantTest {
 
     private static <T> T nullParameterIfRequired(Object nullParameter, T parameter) {
         return nullParameter == parameter ? null : parameter;
-    }
-
-    @Test
-    void shouldCalculateAgeCorrectly() {
-        // given
-        LocalDate birthDate = birthDateForAgeOfFive();
-        Applicant applicant = new Applicant(FIRST_NAME, LAST_NAME, new BirthDate(birthDate), CREDIT_SCORE, EMPLOYMENT, E_MAIL, PHONE_NUMBER);
-
-        // when
-        Age age = applicant.getAge();
-
-        // then
-        assertThat(age.getValue()).isEqualTo(5);
     }
 
     private LocalDate birthDateForAgeOfFive() {
