@@ -9,7 +9,10 @@ import com.dominikcebula.samples.loans.application.port.in.dto.builder.Applicant
 import com.dominikcebula.samples.loans.application.port.in.dto.mapper.LoanApplicationMapper;
 import com.dominikcebula.samples.loans.application.port.out.persistence.LoanApplicationRepository;
 import com.dominikcebula.samples.loans.application.port.time.CurrentDateProvider;
+import com.dominikcebula.samples.loans.application.port.time.MockDateProvider;
 import com.dominikcebula.samples.loans.test.support.UseCaseTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
@@ -32,6 +35,16 @@ class ApproveLoanServiceIntegrationTest {
     private LoanApplicationMapper mapper;
     @Autowired
     private CurrentDateProvider currentDateProvider;
+
+    @BeforeEach
+    void setUp() {
+        MockDateProvider.setUp();
+    }
+
+    @AfterEach
+    void tearDown() {
+        MockDateProvider.tearDown();
+    }
 
     @Test
     @DirtiesContext
